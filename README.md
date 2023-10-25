@@ -50,3 +50,12 @@ Psy Shell v0.11.22 (PHP 8.2.10 — cli) by Justin Hileman
 
 * Luego, cree una pagina de login
 
+* Y crear la funcion en el controlador
+
+```php
+if(Auth::attempt(["email"=> $request->email,'password'=>$request->password])) {
+    $request->session()->regenerate();
+
+    return redirect("/soporte");
+}
+```
