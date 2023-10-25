@@ -21,8 +21,6 @@ class StoreSoporteRequest extends FormRequest
      */
     public function rules(): array
     {
-        //     public $fillable=['solicitante','descripcion','costo','cantidad'];
-
         return [
             'solicitante' => 'required',
             'descripcion' => 'required',

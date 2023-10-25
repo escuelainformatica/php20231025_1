@@ -22,9 +22,21 @@
 
 > php artisan make:view soporte.crear
 
-* edite los requerimientos (validaciones)
+* edite los requerimientos (validaciones), indicando las reglas por cada campo.
 
-## Agregar autenticacion.
+```php
+    public function rules(): array
+    {
+        return [
+            'solicitante' => 'required',
+            'descripcion' => 'required',
+            'costo' => 'gt:0|required|numeric|min:0|not_in:0',
+            'cantidad' => 'gt:0|required|numeric|min:0|not_in:0',
+        ];
+    }
+```
+
+## Agregar autenticacion
 
 ```shell
 PS C:\cursophp2023\php20231025> php artisan tinker
@@ -59,3 +71,12 @@ if(Auth::attempt(["email"=> $request->email,'password'=>$request->password])) {
     return redirect("/soporte");
 }
 ```
+
+* Y cree un enrutamiento para la pagina de login. Este enrutamiento tiene que llamarse "login".
+
+* Modificar el enrutamiento, agregando los middleware en las paginas que requieren authenticacion.
+
+```php
+ Route::middleware('auth')->get('/insertar','create');  
+```
+
